@@ -18,8 +18,33 @@
 </p>
 
 <h1>
-   Flexible square
+   Payment Results
 </h1>
+
+<h4>
+   APR
+</h4>
 <p>
-   The square of <%= @user_number %> is <%= @square %>
+   <%= @interest.round(3) %>
+</p>
+
+<h4>
+   Number of years
+</h4>
+<p>
+   <%= @years.round(1) %>
+</p>
+
+<h4>
+   Principal
+</h4>
+<p>
+   <%= @principal.round(2) %>
+</p>
+
+<h4>
+   Payment
+</h4>
+<p>
+   <%= @payment.round(2) %>
 </p>

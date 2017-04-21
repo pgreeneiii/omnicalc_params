@@ -18,8 +18,24 @@
 </p>
 
 <h1>
-   Flexible square
+   Random Calculation
 </h1>
-<p>
-   The square of <%= @user_number %> is <%= @square %>
-</p>
+
+   <form action="/random/results">
+   <div>
+      <label>
+         Minimum
+      </label>
+
+      <input type="text" name="user_min">
+   </div>
+   <div>
+      <label>
+         Maximum
+      </label>
+
+      <input type="text" name="user_max">
+   </div>
+
+   <button>Pick random number</button>
+</form>

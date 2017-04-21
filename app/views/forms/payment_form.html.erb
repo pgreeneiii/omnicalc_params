@@ -18,8 +18,30 @@
 </p>
 
 <h1>
-   Flexible square
+   Payment Calculation
 </h1>
-<p>
-   The square of <%= @user_number %> is <%= @square %>
-</p>
+
+   <form action="/payment/results">
+   <div>
+      <label>
+         APR
+      </label>
+
+      <input type="text" name="user_apr">
+   </div>
+   <div>
+      <label>
+         Number of years
+      </label>
+
+      <input type="text" name="user_years">
+   </div>
+   <div>
+      <label>
+         Principal
+      </label>
+
+      <input type="text" name="user_principal">
+   </div>
+   <button>Calculate monthly payment</button>
+</form>

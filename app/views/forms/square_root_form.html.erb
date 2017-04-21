@@ -18,8 +18,15 @@
 </p>
 
 <h1>
-   Flexible square
+   Square Root Calculation
 </h1>
-<p>
-   The square of <%= @user_number %> is <%= @square %>
-</p>
+<form action="/square_root/results">
+   <div>
+      <label>
+         Enter a number
+      </label>
+
+      <input type="text" name="user_number">
+   </div>
+   <button>Calculate square root</button>
+</form>
