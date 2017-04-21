@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   get("/word_count/new", {:controller => "forms", :action => "word_count_form"})
   get("/word_count/results", {:controller => "calculations", :action => "word_count_results"})
 
+  get("/descriptive_statistics/new", {:controller => "forms", :action => "descriptive_statistics_form"})
+  get("/descriptive_statistics/results", {:controller => "calculations", :action => "descriptive_statistics_results"})
+
 end

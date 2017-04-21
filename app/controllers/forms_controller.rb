@@ -19,4 +19,8 @@ class FormsController < ApplicationController
    def word_count_form
       render("/forms/word_count_form.html.erb")
    end
+
+   def descriptive_statistics_form
+      render("/forms/descriptive_statistics_form.html.erb")
+   end
 end

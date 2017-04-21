@@ -108,4 +108,119 @@ class CalculationsController < ApplicationController
       @occurrences = search_count
       render("/calculations/word_count_results.html.erb")
    end
+
+   def descriptive_statistics_results
+      #Parameters: {"user_stats" = "10 21 13"}
+      @numbers = params[:user_stats].gsub(',', '').split.map(&:to_f)
+      # Code for Sorting
+      sorted = @numbers.sort
+
+      # Calculate Range
+      range = sorted.last-sorted.first
+
+      # Calculate Median
+      median_num = ((sorted.count-1)/2)
+
+      if median_num == 0
+         median = sorted[0]
+         #median calc is different when number of items is even
+      elsif median_num > 0 && (sorted.count%2) == 0
+         median = (sorted[median_num]+sorted[median_num+1])/2
+         #median calc for odd number of items
+      else
+         median = sorted[median_num]
+      end
+
+      # Calculate Sum
+      sum = 0
+
+      sorted.each do |num|
+         sum += num
+      end
+
+      # Calculate Mean
+      n = @numbers.count*1.0 #make n floating number
+      mean = (sum/n)
+
+      # Calculate Variance
+      variance_numerator = 0
+      sorted.each do |num|
+         variance_numerator += ((num-mean)**2)
+      end
+
+      variance = (variance_numerator/n)
+
+      # Calculate Standard Deviation
+      sd = (variance)**(1.0/2.0)
+
+      # Calculate Mode
+      unique_numbers = []
+      sorted.each do |num| #build array of unique numbers
+         if unique_numbers == []
+            unique_numbers.push(num)
+            next
+
+         else
+            check = 0
+            unique_numbers.each do |test|
+
+               if test == num
+                  check = 1
+               else
+                  next
+               end
+            end
+
+            if check == 0
+               unique_numbers.push(num)
+            end
+         end
+      end
+
+      high_count = 0
+      mode = 0
+      unique_numbers.each do |num|
+         count = 0
+
+         sorted.each do |compare| #count number of occurences
+            if num == compare
+               count += 1
+            end
+         end
+
+         if count > high_count #store as mode if current highest count
+            high_count = count
+            mode = num
+         end
+      end
+
+      if unique_numbers.count == sorted.count
+         mode = unique_numbers[0]
+      end
+
+      @sorted_numbers = sorted
+
+      @count = @numbers.count
+
+      @minimum = sorted.first
+
+      @maximum = sorted.last
+
+      @range = range
+
+      @median = median
+
+      @sum = sum
+
+      @mean = mean
+
+      @variance = variance
+
+      @standard_deviation = sd
+
+      @mode = mode
+
+
+      render("/calculations/descriptive_statistics_results.html.erb")
+   end
 end
